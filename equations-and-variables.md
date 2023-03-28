@@ -5,6 +5,7 @@ $m$: meters
 $g$: grams  
 $K$: Kelvin  
 $W$: watts  
+$J$: joules  
 $\theta$: theta (angle in radians or dimensionless temperature)  
 $\phi$: phi (angle in radians)
 $s$: seconds  
