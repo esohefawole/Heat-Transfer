@@ -38,7 +38,7 @@ thermal energy rate ($\dot{E}$) [=] $W$
 thermal energy rate in ($\dot{E}_{in}$) [=] $W$  
 thermal energy rate out ($\dot{E}_{out}$) [=] $W$  
 thermal energy stored rate ($\dot{E}_{st}$) [=] $W$  
-thermal energy generation rate ($\dot{E}_{gen}$) [=] $W$   
+thermal energy generation rate ($\dot{E}_{gen}$) [=] $W$    
 
 ## Equations
 
