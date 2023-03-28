@@ -12,15 +12,90 @@ $s$: seconds
 ## Variables with Units  
 length(l), height (h), or width (w) [=] $m$  
 diameter (D) or radius (r) [=] $m$  
-temperature (T) [=] $K$  
-temperature of surroundings (T_surr) [=] $K$  
-temperature of surface (T_s) [=] $K$  
 area (A) [=] ${m^2}$  
+volume (V) [=] $m^3$   
+temperature ($T$) [=] $K$  
+temperature of surroundings ($T_{surr}$) [=] $K$  
+temperature of surface ($T_s$) [=] $K$  
+temperature of free flowing fluid ($T_\infty$)  
 time (t) [=] $s$  
-energy rate ($\dot{E}$) [=] $W$  
-thermal conductivity (k) [=] $\frac{W}{m \cdot K}$  
+mass (m) [=] $kg$    
+density ($\rho$) [=] $kg/m$   
 heat rate ($q$) [=] $W$  
 heat flux ($\underline{q}''$) [=] $\frac{W}{m^2}$  
 volumetric energy rate ($\dot{q}$ or $q'''$) [=] $\frac{W}{m^3}$  
+heat transfer coefficient (h) [=] $\frac{W}{m^2 \cdot K}$   
+thermal conductivity (k) [=] $\frac{W}{m \cdot K}$    
 Stefan-Boltzmann constant ($\sigma$) [=] $\frac{W}{m^2 K^4}$  
-  
+absorptivity ($\alpha$) [=] dimensionless  
+irradiation (G) [=] $\frac{W}{m^2}$    
+emissivity ($\epsilon$) [=] dimensionless  
+emissive power ($E$) [=] $\frac{W}{m^2}$  
+ideal emissive power of black body ($E_b$) [=] $\frac{W}{m^2}$  
+thermal energy rate ($\dot{E}$) [=] $W$  
+thermal energy rate in ($\dot{E}_{in}$) [=] $W$  
+thermal energy rate out ($\dot{E}_{out}$) [=] $W$  
+thermal energy stored rate ($\dot{E}_{st}$) [=] $W$  
+thermal energy generation rate ($\dot{E}_{gen}$) [=] $W$   
+
+## Equations
+
+### Energy Rate Balance
+
+$\dot{E}_{st} = \dot{E}_{in} - \dot{E}_{out} + \dot{E}_{gen}$  
+
+where  
+- $\dot{E}_{st} = \rho C_p \frac{\partial T}{\partial t} \partial x \partial y \partial z$  
+- $\dot{E}_{in} = q''_s A_s$ where $q''_s$ is the heat flux from a source (conduction or convection) and $A_s$ is the surface area of the heat flux source   
+- $\dot{E}_{out} = q''_s A_s$ where $q''_s$ is the heat flux from a source (conduction, convection or radiation) and $A_s$ is the surface area of the heat flux source  
+- $\dot{E}_{gen} = q'''V$ (for a resistor)
+
+-----------------------------
+### Laws
+
+
+Fourier's Law (Conduction) 
+
+heat flux:   
+$\underline{q}'' = -k \underline{\nabla} T$  
+ 
+heat rate:  
+$q = -k A\triangle T /L$ (for circuit analogy)  
+
+
+
+Newton's Law of Cooling (Convection) 
+
+$q'' = h(T_s - T_\infty)$  
+
+Stefan-Boltzmann Law (Radiation)  
+
+$E = \epsilon \sigma T_s^4$ or $q_r'' = \epsilon \sigma (T_s^4 - T_{surr}^4)$
+
+-----------------
+
+### Heat Diffusion Equation  
+
+Cartesian Coordinates:  
+
+$\frac{\partial}{\partial x} (k \frac{\partial T}{\partial x}) + \frac{\partial}{\partial y} (k \frac{\partial T}{\partial y}) + \frac{\partial}{\partial z} (k \frac{\partial T}{\partial z}) + q''' = \rho C_p \frac{\partial T}{\partial t}$  
+
+dividing the equation by $k$ gives  
+
+$\frac{\partial^2 T}{\partial x^2} + \frac{\partial^2 T}{\partial y^2} + \frac{\partial^2 T}{\partial z^2} + \frac{q'''}{k} = \frac{1}{\alpha} \frac{\partial T}{\partial t}$  
+
+where $\alpha = \frac{k}{\rho C_p}$  
+
+Cylindrical Coordinates:  
+
+$\frac{1}{r} \frac{\partial}{\partial r} (kr \frac{\partial T}{\partial r}) + \frac{1}{r^2} \frac{\partial}{\partial \phi} (k \frac{\partial T}{\partial \phi}) + \frac{\partial}{\partial z} (k \frac{\partial T}{\partial z}) + q''' = \rho C_p \frac{\partial T}{\partial t}$  
+
+Spherical Coordinates:
+
+$\frac{1}{r^2} \frac{\partial}{\partial r} (k r^2 \frac{\partial T}{\partial r}) + \frac{1}{r^2 sin^2 \theta} \frac{\partial}{\partial \phi} (k \frac{\partial T}{\partial \phi}) + \frac{1}{r^2 sin \theta} \frac{\partial}{\partial \theta} (k \frac{\partial T}{\partial \theta}) + q''' = \rho C_p \frac{\partial T}{\partial t}$  
+
+-----------------
+
+### Boundary Conditions  
+
+Constant Surface Temperature
