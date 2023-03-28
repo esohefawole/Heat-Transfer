@@ -35,10 +35,10 @@ emissivity ($\epsilon$) [=] dimensionless
 emissive power ($E$) [=] $\frac{W}{m^2}$  
 ideal emissive power of black body ($E_b$) [=] $\frac{W}{m^2}$  
 thermal energy rate ($\dot{E}$) [=] $W$  
-thermal energy rate in ($\dot{E}_{in}$) [=] $W$  
-thermal energy rate out ($\dot{E}_{out}$) [=] $W$  
-thermal energy stored rate ($\dot{E}_{st}$) [=] $W$  
-thermal energy generation rate ($\dot{E}_{gen}$) [=] $W$    
+thermal energy rate in ($\dot{E_{in}}$) [=] $W$  
+thermal energy rate out ($\dot{E_{out}}$) [=] $W$  
+thermal energy stored rate ($\dot{E_{st}}$) [=] $W$  
+thermal energy generation rate ($\dot{E_{gen}}$) [=] $W$    
 
 ## Equations
 
@@ -55,7 +55,7 @@ Reynolds Number (Re) $\equiv \frac{\rho v L}{\mu}$
 
 ### Energy Rate Balance
 
-$\dot{E}_{st} = \dot{E}_{in} - \dot{E}_{out} + \dot{E}_{gen}$  
+$\dot{E_{st}} = \dot{E_{in}} - \dot{E_{out}} + \dot{E_{gen}}$  
 
 where  
 - $\dot{E}_{st} = \rho C_p \frac{\partial T}{\partial t} \partial x \partial y \partial z$  
@@ -129,7 +129,7 @@ $\frac{1}{r^2} \frac{\partial}{\partial r} (k r^2 \frac{\partial T}{\partial r})
 4. Boundary between two adjoining bodies (interface):
     - $T_1 = T_2$ at $x=x_{boundary}$
     - $-k_1 \frac{dT_1}{dx} = -k_2 \frac{dT_2}{dx}$ at $x=x_{boundary}$ (conservation of energy)
-    - $q''_1 = q''_2$ at $x=x_{boundary}$  
+    - $q_1'' = q_2''$ at $x=x_{boundary}$  
 
 ------------------------
 
