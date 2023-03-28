@@ -17,17 +17,19 @@ volume (V) [=] $m^3$
 temperature ($T$) [=] $K$  
 temperature of surroundings ($T_{surr}$) [=] $K$  
 temperature of surface ($T_s$) [=] $K$  
-temperature of free flowing fluid ($T_\infty$)  
+temperature of bulk fluid ($T_\infty$)  
 time (t) [=] $s$  
+velocity (v) [=] $\frac{m}{s}$  
 mass (m) [=] $kg$    
-density ($\rho$) [=] $kg/m$   
+density ($\rho$) [=] $kg/m$  
+heat capacity ($C_p$) [=] $\frac{kJ}{kg \cdot K}$   
 heat rate ($q$) [=] $W$  
 heat flux ($\underline{q}''$) [=] $\frac{W}{m^2}$  
 volumetric energy rate ($\dot{q}$ or $q'''$) [=] $\frac{W}{m^3}$  
 heat transfer coefficient (h) [=] $\frac{W}{m^2 \cdot K}$   
 thermal conductivity (k) [=] $\frac{W}{m \cdot K}$    
-Stefan-Boltzmann constant ($\sigma$) [=] $\frac{W}{m^2 K^4}$  
-absorptivity ($\alpha$) [=] dimensionless  
+Stefan-Boltzmann constant ($\sigma$) [=] $\frac{W}{m^2 \cdot K^4}$  
+thermal diffusivity ($\alpha$) [=] $\frac{m^2}{s}$  
 irradiation (G) [=] $\frac{W}{m^2}$    
 emissivity ($\epsilon$) [=] dimensionless  
 emissive power ($E$) [=] $\frac{W}{m^2}$  
@@ -39,6 +41,17 @@ thermal energy stored rate ($\dot{E}_{st}$) [=] $W$
 thermal energy generation rate ($\dot{E}_{gen}$) [=] $W$   
 
 ## Equations
+
+### Dimensionless Numbers
+
+Biot Number (Bi) $\equiv \frac{hL}{k}$  
+Grashof Number (Gr) $\equiv \frac{g L^3 \beta (T_s - T_\infty)}{\nu^2}$  
+Nusselt Number (Nu) $\equiv \frac{hL}{k}$  
+Peclet Number (Pe) $\equiv \frac{\nu L}{\alpha}$  
+Prandtl Number (Pr) $\equiv \frac{\nu}{\alpha} = \frac{\mu C_p}{k}$  
+Rayleigh Number (Ra) $\equiv Gr \cdot Pr$  
+Reynolds Number (Re) $\equiv \frac{\rho v L}{\mu}$
+
 
 ### Energy Rate Balance
 
@@ -57,16 +70,19 @@ where
 Fourier's Law (Conduction) 
 
 heat flux:   
-$\underline{q}'' = -k \underline{\nabla} T$  
+$\underline{q}'' = -k \underline{\nabla} T$ (differential)  
+$q'' = k \frac{\triangle T}{L}$ 
  
 heat rate:  
 $q = -k A\triangle T /L$ (for circuit analogy)  
 
-
+$\cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot$
 
 Newton's Law of Cooling (Convection) 
 
 $q'' = h(T_s - T_\infty)$  
+
+$\cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot$
 
 Stefan-Boltzmann Law (Radiation)  
 
@@ -86,9 +102,13 @@ $\frac{\partial^2 T}{\partial x^2} + \frac{\partial^2 T}{\partial y^2} + \frac{\
 
 where $\alpha = \frac{k}{\rho C_p}$  
 
+$\cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot$
+
 Cylindrical Coordinates:  
 
 $\frac{1}{r} \frac{\partial}{\partial r} (kr \frac{\partial T}{\partial r}) + \frac{1}{r^2} \frac{\partial}{\partial \phi} (k \frac{\partial T}{\partial \phi}) + \frac{\partial}{\partial z} (k \frac{\partial T}{\partial z}) + q''' = \rho C_p \frac{\partial T}{\partial t}$  
+
+$\cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot \cdot$
 
 Spherical Coordinates:
 
@@ -98,4 +118,19 @@ $\frac{1}{r^2} \frac{\partial}{\partial r} (k r^2 \frac{\partial T}{\partial r})
 
 ### Boundary Conditions  
 
-Constant Surface Temperature
+1. Constant Surface Temperature: $T(\underline{r},t) = T_s(\underline{r_s},t)$  
+
+2. Constant surface heat flux: 
+    - finite: $-k \frac{dT}{dx} = q_s''$ at $x=0$
+    - insulation or adiabatic: $-k \frac{dT}{dx} = 0$  
+
+3. Convection surface condition: $-k \frac{dT}{dx} = h(T_\infty - T(x))$ at $x=0$  
+
+4. Boundary between two adjoining bodies (interface):
+    - $T_1 = T_2$ at $x=x_{boundary}$
+    - $-k_1 \frac{dT_1}{dx} = -k_2 \frac{dT_2}{dx}$ at $x=x_{boundary}$ (conservation of energy)
+    - $q''_1 = q''_2$ at $x=x_{boundary}$  
+
+------------------------
+
+
